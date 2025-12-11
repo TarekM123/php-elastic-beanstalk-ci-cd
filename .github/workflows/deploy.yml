@@ -10,7 +10,6 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    # Optional: you can remove the 'environment: deployment' line if you don't use GitHub Environments
 
     steps:
     # 1. Checkout the code from your repository
@@ -22,7 +21,7 @@ jobs:
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: eu-north-1 # Based on your AWS screenshot
+        aws-region: eu-north-1 
 
     # 3. Deploy the application to Elastic Beanstalk
     - name: Deploy to Elastic Beanstalk
@@ -31,5 +30,5 @@ jobs:
         application_name: php-elastic-beanstalk-ci-cd
         environment_name: Php-elastic-beanstalk-ci-cd-env
         version_label: github-sha-${{ github.sha }}
-        region: eu-north-1 # Based on your AWS screenshot
+        region: eu-north-1 
         deployment_package: archive.zip
