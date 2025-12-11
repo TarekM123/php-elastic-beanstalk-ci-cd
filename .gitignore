@@ -1,0 +1,8 @@
+# Dependency directories
+/vendor/
+
+# PHP specific files
+*.log
+*.cache
+.env
+.idea/
