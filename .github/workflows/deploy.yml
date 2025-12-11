@@ -1,5 +1,12 @@
 # .github/workflows/deploy.yml
 name: Deploy PHP App to Elastic Beanstalk
+# This is a dummy comment to force a pipeline rerun
+
+on:
+# ... (rest of the file remains unchanged)
+
+# .github/workflows/deploy.yml
+name: Deploy PHP App to Elastic Beanstalk
 
 on:
   push:
