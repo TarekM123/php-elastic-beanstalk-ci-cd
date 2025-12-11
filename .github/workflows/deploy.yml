@@ -1,0 +1,35 @@
+# .github/workflows/deploy.yml
+name: Deploy PHP App to Elastic Beanstalk
+
+on:
+  push:
+    # This pipeline runs whenever code is pushed to the 'main' branch
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    # Optional: you can remove the 'environment: deployment' line if you don't use GitHub Environments
+
+    steps:
+    # 1. Checkout the code from your repository
+    - uses: actions/checkout@v4
+
+    # 2. Configure AWS credentials using the secrets you stored
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: eu-north-1 # Based on your AWS screenshot
+
+    # 3. Deploy the application to Elastic Beanstalk
+    - name: Deploy to Elastic Beanstalk
+      uses: einaregilsson/beanstalk-deploy@v21
+      with:
+        application_name: php-elastic-beanstalk-ci-cd
+        environment_name: Php-elastic-beanstalk-ci-cd-env
+        version_label: github-sha-${{ github.sha }}
+        region: eu-north-1 # Based on your AWS screenshot
+        deployment_package: archive.zip
