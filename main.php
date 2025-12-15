@@ -1,6 +1,8 @@
 <?php
 include('save.php');
-echo "<h3> ci/cd projet</h3> ";
+
+echo "<h3>CI/CD Test — Version 2</h3>";
+echo "<p>Deployed at: " . date('Y-m-d H:i:s') . "</p>";
 ?>
 
 <!DOCTYPE html>
